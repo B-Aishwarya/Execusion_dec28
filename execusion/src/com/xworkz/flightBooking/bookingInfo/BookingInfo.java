@@ -31,7 +31,6 @@ public class BookingInfo {
 	public void displayBookingInfo() {
 		System.out.println("Displaying all the Booking detailes");
 		for (int i = 0; i < this.flightInfoDto.length; i++) {
-
 			FlightInfoDTO flightInfoDto = this.flightInfoDto[i];
 			if (flightInfoDto != null) {
 				System.out.println("airplane code is " + flightInfoDto.getAirplaneCode());
@@ -46,24 +45,25 @@ public class BookingInfo {
 
 	public void displayBookingAtStartIndex(String startingPOint) {
 		if (startingPOint != null) {
-			System.out.println("displaying starting point");
-			System.out.println("starting position is " + startingPOint);
-			for (int index = 0; index < this.flightInfoDto.length; index++) {
-				FlightInfoDTO refOfstart = this.flightInfoDto[index];
-				String localstartingPOint = refOfstart.getStartingPoint();
-				if (localstartingPOint.equals(startingPOint)) {
-					System.out.println("starting point is found");
-					refOfstart.setDestination("Mumbai");
-					System.out.println("destination point is" + refOfstart.getDestination());
-					refOfstart.setEconomyClassPrice(1898);
-					System.out.println("EconomyClassPrice is " + refOfstart.getEconomyClassPrice());
+			boolean start = false;
 
+			for (int index = 0; index < this.flightInfoDto.length; index++) {
+				if (this.flightInfoDto[index] != null) {
+					System.out.println("displaying starting point");
+					FlightInfoDTO refOfstart = this.flightInfoDto[index];
+					String localstartingPOint = refOfstart.getStartingPoint();
+					if (startingPOint.equals(localstartingPOint)) {
+						System.out.println("starting point is found" + refOfstart.getStartingPoint());
+						System.out.println("destination point is" + refOfstart.getDestination());
+						System.out.println("EconomyClassPrice is " + refOfstart.getEconomyClassPrice());
+						start = true;
+						break;
+					}
+					if (start == false)
+						System.out.println("starting point is not found");
 					break;
 				}
 			}
-		} else {
-			System.out.println(startingPOint + " starting point is not found");
 		}
 	}
-
 }
