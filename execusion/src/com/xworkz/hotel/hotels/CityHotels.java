@@ -33,15 +33,28 @@ public class CityHotels {
 		}
 	}
 
-	public void searchHotels(String name, String location) {
-		System.out.println("searching hotel name by location");
-		if (name != null && location != null) {
-			System.out.println("hotel is found");
-			System.out.println(name);
-			System.out.println(location);
+	public void searchHotels(String name, Location location) {
 
+			if (name != null && location!=null) {
+				System.out.println("searching for name " + name);
+				boolean found = false;
+				for (int index = 0; index < this.hotelDTO.length; index++) {
+					HotelDto refOfCar = this.hotelDTO[index];
+					String localModel = refOfCar.getName();
+					if (localModel.equals(name)) {
+						System.out.println("hotel is found");
+						System.out.println(refOfCar.getName());
+						System.out.println(refOfCar.getLocation());
+						found = true;
+						break;
+					}
+				}
+				if (found == false) {
+					System.out.println(name + " hotel is not found");
+				}
+			}
 		}
-	}
+
 
 	public void displayInfo() {
 		for (int i = 0; i < this.hotelDTO.length; i++) {
